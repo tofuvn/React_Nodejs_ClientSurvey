@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
@@ -18,12 +19,14 @@ app.use(
 );
 
 
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
 const PORT = process.env.PORT || 5000;
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 app.listen(PORT, () => {
   console.log("Welcome");
