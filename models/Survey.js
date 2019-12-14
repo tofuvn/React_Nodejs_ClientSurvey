@@ -17,7 +17,7 @@ const surverScheme = new Schema({
     default: 0
   },
   _user: { type: Schema.Types.ObjectId, ref: 'User'},
-  dataSent: Date,
+  dateSent: Date,
   lastResponded: Date
 });
 
